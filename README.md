@@ -1,5 +1,13 @@
 # portfolio
-This repo contains files used to show my before, during and after journey of creating a ckoud environment in the cloud and then securing it. I exposed it to the public internet and allowed all traffic to the virtual machines, key storage, active directory, and any other resources.
+This repo contains files used to show my before, during and after journey of 
+1. Creating a cloud environment in the cloud
+2. Creating resources and exposing them to the public internet. For virtual machines, this also meant custom high priority inbound rules allowing all traffic on any port, any protocol.
+3. Configuring logging on all resources, and including respective NSGs of virtual machines.
+4. Configuring MS Defender for Cloud.
+5. Setting alerts in sentinel
+6. Dealing with incidents that arose compliant to the NIST 800-61
+7. Then, securing the cloud environment, implementing controls from NIST 800-53.
+
 
 I then went through the process of directing all logs from VMs and their network security groups to a single LAW (Log Analytics Workspace). Then Microsoft Defender for Cloud was activated, enabling continuous export of logs into the LAW.Microsoft Sentinel was added next, and custom workbooks were created allowing us to plot on the a map where in the brute force attacks and other suspisious activity were coming from. This is where custom KQL queries were set up as alerts to create Security Alerts/Incidents.
 
