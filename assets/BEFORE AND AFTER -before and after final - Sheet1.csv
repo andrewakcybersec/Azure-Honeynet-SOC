@@ -1,0 +1,27 @@
+,BEFORE SECURING ENVIRONMENT,
+,,
+,Start Time,2023-08-13T21:03:08.1360519Z
+,Stop Time,2023-08-15T21:03:08.1360519Z
+,Security Events (Windows VMs),431558
+,Syslog (Linux VMs),121136
+,SecurityAlert (Microsoft Defender for Cloud),3
+,SecurityIncident (Sentinel Incidents),385
+,NSG Inbound Malicious Flows Allowed,9808
+,,
+,AFTER SECURING ENVIRONMENT,
+,,
+,Start Time,2023-08-27T04:00:00.00963Z
+,Stop Time,2023-08-29T04:00:00.00963Z
+,Security Events (Windows VMs),92155
+,Syslog (Linux VMs),25
+,SecurityAlert (Microsoft Defender for Cloud),0
+,SecurityIncident (Sentinel Incidents),0
+,NSG Inbound Malicious Flows Allowed,0
+,,
+,RESULTS,
+,,Change after security environment
+,Security Events (Windows VMs),-78.65%
+,Syslog (Linux VMs),-99.98%
+,SecurityAlert (Microsoft Defender for Cloud),-100.00%
+,Security Incident (Sentinel Incidents),-100.00%
+,NSG Inbound Malicious Flows Allowed,-100.00%

@@ -1,0 +1,35 @@
+incident 450
+
+156 Events, 6 Alerts
+
+ActionTaken
+Blocked
+
+Category
+Virus
+
+Threat Status
+Quarantined
+
+link describes this as
+------------------------------------------------------------------------
+Virus:DOS/EICAR_Test_File
+Detected by Microsoft Defender Antivirus
+Aliases: EICAR (Wild List ORG) EICAR-Test-File (not a virus) (BitDefender) EICAR Test String (CA) Eicartest (ESET) Eicar_test_file (Frisk (F-Prot)) EICAR-Test-File (Kaspersky) EICAR-AV-Test (Sophos) Eicar_test_file (Trend Micro)
+
+Summary
+This file is not malicious.
+
+It's used to check that your security software is working properly.
+
+If you downloaded this file and continue to get warnings from your security software about it, you can manually delete or remove it.
+
+Some security software might put this file on your PC to test that it's working correctly. If you have multiple security software installed, you may encounter errors as they all try to clean the same file.
+-------------------------------------------------------------
+
+
+I ran a powershell script to generate these files, test not only that the
+ antivirus software worked, but our SIEM would get the message and 
+ our custom alerts would work as well.
+
+
