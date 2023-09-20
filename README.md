@@ -15,21 +15,19 @@ In this project, a honeynet was constructed using Microsoft Azure. The objective
 ## Technologies, Azure Components, and Regulations Employed
 - Azure Virtual Network (VNet)
 - Azure Network Security Groups (NSG)
-- Virtual Machines (2 Windows VMs, 1 Linux VM)
-- Log Analytics Workspace with Kusto Query Language (KQL) Queries
-- Azure Key Vault for Secure Secrets Management
+- Virtual Machines (1 Windows VM, 1 Linux VM)
+- Log Analytics Workspace with KQL Queries
+- Azure Key Vault for Secrets Management
 - Azure Storage Account for Data Storage
 - Microsoft Sentinel for Security Information and Event Management (SIEM)
 - Microsoft Defender for Cloud to Protect Cloud Resources
-- Windows Remote Desktop for Remote Access
-- Command Line Interface (CLI) for System Management
 - PowerShell for Automation and Configuration Management
 - NIST SP 800-53 Revision 5 for Security Controls
-- [NIST SP 800-61 Revision 2(https://www.nist.gov/privacy-framework/nist-sp-800-61) for Incident Handling Guidance
+- NIST SP 800-61 Revision 2 for Incident Handling Guidance
 
 
 ## Architecture BEFORE Hardening and Implementing Security Controls
-![Architecture Diagram]()
+![Architecture Diagram](assets/diagrams/before_securing.png)
 During the "BEFORE" stage of the project, and exposed to the public for malicious actors to discover. The intention for this stage was to attract bad actors and observe their attack patterns. To achieve this, A Windows virtual machine hosting a SQL database was deployed and the Windows and Linux servers both had their network security groups (NSGs) had high priority inbound rules added, allowing all traffic from all ports in any protocols. This is an incredibly dangerous thing to do, but it made for same enticing targets and some great metrics. To entice attackers even more, a storage account and key vault were deployed with public endpoints which were visible on the open internet. In this stage, the unsecured environment was monitored by Microsoft Sentinel using logs aggregated by the Log Analytics workspace.
 
 
