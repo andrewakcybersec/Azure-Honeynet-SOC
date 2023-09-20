@@ -12,7 +12,7 @@ In this project, a honeynet was constructed using Microsoft Azure. The objective
 - AzureNetworkAnalytics_CL (Malicious Flows allowed into our honeynet)
 
 
-## Technologies, Components, and Standards used
+## Technologies, Components, and Standards Used
 - Azure Virtual Network (VNet)
 - Azure Network Security Groups (NSG)
 - Virtual Machines (1 Windows VM, 1 Linux VM)
@@ -45,10 +45,10 @@ During the "after" stage of the project, the environment was hardened and securi
 <b>This attack map shows the traffic allowed by a Network Security Group with all traffic allowed inbound</b>
 ![NSG Allowed Inbound Malicious Flows](assets/before-malicious-flows-map.png)<br>
 
-<b>This attack map shows all the attempts malicious actors attempting to access the Linux virtual machine</b>
+<b>This attack map shows all the attempts of malicious actors trying to access the Linux virtual machine</b>
 ![Linux Syslog Auth Failures](assets/before-linux-auth-fails-map.png)<br>
 
- <b>This attack map shows all the attempts malicious actors attempting to access the Windows virtual machine</b>
+ <b>This attack map shows all the attempts of malicious actors trying to access the Windows virtual machine</b>
 ![Windows RDP/SMB Auth Failures](assets/before-rdp-fails.png)<br>
 
 ## Just Before Hardening
