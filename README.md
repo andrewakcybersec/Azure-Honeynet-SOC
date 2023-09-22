@@ -17,22 +17,22 @@ In this project, a honeynet was constructed using Microsoft Azure. The objective
 - Azure Network Security Groups (NSG)
 - Virtual Machines (1 Windows VM, 1 Linux VM)
 - Log Analytics Workspace with KQL Queries
-- Azure Key Vault for Secrets Management
+- Azure Key Vault for secrets management
 - Azure Storage Account for data storage
 - Microsoft Sentinel as a Security Information and Event Management system (SIEM)
 - Microsoft Defender for Cloud to protect cloud resources
-- PowerShell for automation and 
+- PowerShell for automation 
 - NIST 800-53 for security controls
 - NIST 800-61 for incident handling procedures
 
 
 ## Architecture BEFORE Hardening and Implementing Security Controls
-![Architecture Diagram](assets/diagrams/before_securing.png)
+![Architecture Diagram](assets/diagrams/before_securing.jpg)
 During the "before" stage of the project, and exposed to the public for malicious actors to discover. The goal at this stage was to attract bad actors and observe their attack patterns. To achieve this, A Windows virtual machine hosting a Microsoft SQL database was deployed onto the Windows VM and exposed via the standard port. The Windows and Linux servers both had their network security groups (NSGs) had high priority inbound rules added, allowing all traffic from all ports in any protocol. This is an incredibly dangerous thing to do, but it made for some enticing targets and some great metrics. To entice attackers even more, a storage account and key vault were deployed with public endpoints which were visible on the open internet. The unsecured environment was monitored by Microsoft Sentinel using logs aggregated by the Log Analytics Workspace.
 
 
 ## Architecture AFTER Hardening and Implementing Security Controls
-![Architecture Diagram]()
+![Architecture Diagram](assets/diagrams/after_securing.jpg)
 During the "after" stage of the project, the environment was hardened and security controls were implemented in order to satisfy NIST 800-53. These hardening tactics included:
 - <b>Network Security Groups (NSGs)</b>: NSGs were hardened by removing the  allow-all inbound traffic rule with a fully restrictive one (the exception of specific public IP addresses that required access to the virtual machines). This ensured that only authorized traffic from a trusted source was allowed to access the virtual machines.
 
@@ -43,16 +43,20 @@ During the "after" stage of the project, the environment was hardened and securi
 
 ## Attack Maps Before Hardening / Security Controls
 <b>This attack map shows the traffic allowed by a Network Security Group with all traffic allowed inbound</b>
-![NSG Allowed Inbound Malicious Flows](assets/before-malicious-flows-map.png)<br>
+![NSG Allowed Inbound Malicious Flows](assets/before-malicious-flows-map.png)<br/>
 
 <b>This attack map shows all the attempts of malicious actors trying to access the Linux virtual machine</b>
-![Linux Syslog Auth Failures](assets/before-linux-auth-fails-map.png)<br>
+![Linux Syslog Auth Failures](assets/before-linux-auth-fails-map.png)<br/>
 
  <b>This attack map shows all the attempts of malicious actors trying to access the Windows virtual machine</b>
-![Windows RDP/SMB Auth Failures](assets/before-rdp-fails.png)<br>
+![Windows RDP/SMB Auth Failures](assets/before-rdp-fails.png)<br/>
+
+<b>The map showing the failed attempts to gain access to the MS SQL Server was non-existent</b><br/>
+Nobody found the database, or if they did, weren't concerned enough with it to try and access it. The only attempt shown was my own, done to test that the custom alerts I had set up functioned. But during the monitored period, no one found or attempted access.
+![MSSQL Auth Failures](assets/before-mssql-failed-logins.png)<br/>
 
 ## Just Before Hardening
-Incidents were dealt with in the manner desrcibed in Nist 800-61. These incidents were investigated, actors tied to other incidents, etc. I also learned that while some actors used tactics resulting in an event ID of 4625 (failed login), some decided to connect from odd ports, resulting in an event ID of 5156. This is done to merely attempt at port scanning, exploit attempts, brute force attempts, malware delivery, etc)
+Incidents were dealt with in the manner desrcibed in Nist 800-61. These incidents were investigated, actors tied to other incidents, etc. I also learned that while some actors used tactics resulting in an event ID of 4625 (failed login), some decided to connect from odd ports, resulting in an event ID of 5156. This is done to merely attempt at port scanning, exploit attempts, brute force attempts, malware delivery, etc. They came from IPs involved in other incidents such as the many brute force attempts.
 
 ## Metrics Before Hardening / Security Controls
 The following table shows the metrics measured within the unsecured environment for 24 hours:
@@ -91,4 +95,4 @@ Hardening was not too long of a process, VMs were left on during this period, bu
 
 ## Conclusion
 
-In this project, a small but effective honeynet was constructed in Microsoft Azure, and log sources were aggregated into a Log Analytics workspace. Microsoft Sentinel was configured to trigger alerts and create incidents based on the ingested logs. Additionally, metrics were taken in the unsecured environment before security controls were applied and after implementing security measures. After the implementation of robust security controls, there was a 76.6% reduction in Windows Security Events, a 99.9% reduction in Linux Events, and a 100% reduction in security alerts, incidents, and malicious inbound network traffic. The "Security Posture", as measured by Microsoft Defender for Cloud, was doubled after hardening.
+In this project, a small but effective honeynet was constructed in Microsoft Azure, and log sources were aggregated into a Log Analytics workspace. Microsoft Sentinel was configured to trigger alerts and create incidents based on the ingested logs. Additionally, metrics were taken in the unsecured environment before security controls were applied and after implementing security measures. After the implementation of robust security controls, there was a 76.6% reduction in Windows Security Events, a 99.9% reduction in Linux Events, and a 100% reduction in security alerts, incidents, and malicious inbound network traffic. The "Security Posture", as measured by Microsoft Defender for Cloud, was doubled after hardening, it fluctuated but went from 33-40% to 74-80%.
