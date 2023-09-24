@@ -3,7 +3,7 @@
 
 ## Objective
 
-In this project, a honeynet was constructed using Microsoft Azure. The objective was to capture and analyze logs from all resources, and consolidate them into a Log Analytics workspace. Microsoft Sentinel was utilized as a SIEM and leverage these logs to develop attack maps, create alerts, and generate security incidents. Azure Sentinel measured insecure environment over a 48-hour period. After that, incidents were dealt with using NIST 800-61 as a guide.  Security controls were implemented to strengthen our virtual environment, using NIST 800-53 as a general guide. Another group of 48-hour metrics were gathered and the results compared. The metrics analyzed were:
+In this project, a honeynet was constructed using Microsoft Azure. The objective was to capture and analyze logs from all resources, and consolidate them into a Log Analytics workspace. Microsoft Sentinel was utilized as a SIEM and leveraged these logs to develop attack maps, create alerts, and generate security incidents. Azure Sentinel measured the insecure environment over a 48-hour period. After that, incidents were dealt with using NIST 800-61 as a guide.  Security controls were implemented to strengthen our virtual environment, using NIST 800-53 as a general guide. Another group of 48-hour metrics were gathered and the results compared. The metrics analyzed were:
 
 - SecurityEvent (Windows Event Logs)
 - Syslog (Linux Event Logs)
@@ -28,13 +28,13 @@ In this project, a honeynet was constructed using Microsoft Azure. The objective
 
 ## Architecture BEFORE Hardening and Implementing Security Controls
 ![Architecture Diagram](assets/diagrams/before_securing.jpg)
-During the "before" stage of the project, and exposed to the public for malicious actors to discover. The goal at this stage was to attract bad actors and observe their attack patterns. To achieve this, A Windows virtual machine hosting a Microsoft SQL database was deployed onto the Windows VM and exposed via the standard port. The Windows and Linux servers both had their network security groups (NSGs) had high priority inbound rules added, allowing all traffic from all ports in any protocol. This is an incredibly dangerous thing to do, but it made for some enticing targets and some great metrics. To entice attackers even more, a storage account and key vault were deployed with public endpoints which were visible on the open internet. The unsecured environment was monitored by Microsoft Sentinel using logs aggregated by the Log Analytics Workspace.
+During the "before" stage of the project, and exposed to the public for malicious actors to discover. The goal at this stage was to attract bad actors and observe their attack patterns. To achieve this, A Windows virtual machine hosting a Microsoft SQL database was deployed onto the Windows VM and exposed via the standard port. The Windows and Linux servers both had their network security groups (NSGs) had high priority inbound rules added, allowing all traffic from all ports in any protocol. This is an incredibly dangerous thing to do, but it made for some enticing targets and some great metrics. To entice attackers even more, a storage account and key vault were deployed with public endpoints which were visible on the open internet. The unsecured environment was monitored by Microsoft Sentinel using logs aggregated in the Log Analytics Workspace.
 
 
 ## Architecture AFTER Hardening and Implementing Security Controls
 ![Architecture Diagram](assets/diagrams/after_securing.jpg)
 During the "after" stage of the project, the environment was hardened and security controls were implemented in order to satisfy NIST 800-53. These hardening tactics included:
-- <b>Network Security Groups (NSGs)</b>: NSGs were hardened by removing the  allow-all inbound traffic rule with a fully restrictive one (the exception of specific public IP addresses that required access to the virtual machines). This ensured that only authorized traffic from a trusted source was allowed to access the virtual machines.
+- <b>Network Security Groups (NSGs)</b>: NSGs were hardened by removing the  allow-all inbound traffic rule with a fully restrictive one (The exception of specific public IP addresses that required access to the virtual machines). This ensured that only authorized traffic from a trusted source was allowed to access the virtual machines.
 
 - <b>Built-in Firewalls</b>: Azure's built-in firewalls were configured on the virtual machines to restrict unauthorized access and protect the resources.
 
