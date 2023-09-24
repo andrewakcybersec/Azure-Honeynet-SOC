@@ -56,7 +56,9 @@ Nobody found the database, or if they did, weren't concerned enough with it to t
 ![MSSQL Auth Failures](assets/before-mssql-failed-logins.png)<br/>
 
 ## Just Before Hardening
-Incidents were dealt with in the manner desrcibed in Nist 800-61. These incidents were investigated, actors tied to other incidents, etc. I also learned that while some actors used tactics resulting in an event ID of 4625 (failed login), some decided to connect from odd ports, resulting in an event ID of 5156. This is done to merely attempt at port scanning, exploit attempts, brute force attempts, malware delivery, etc. They came from IPs involved in other incidents such as the many brute force attempts.
+Incidents were dealt with in the manner described in Nist 800-61. These incidents were investigated, actors tied to other incidents, etc. I also learned that while some actors used tactics resulting in an event ID of 4625 (failed login), some decided to connect from odd ports, resulting in an event ID of 5156. This is done to merely attempt at port scanning, exploit attempts, brute force attempts, malware delivery, etc. They came from IPs involved in other incidents such as the many brute force attempts resulting in Windows Event ID 4625.
+
+Incidents were investigated, KQL queries made, logs inspected, categorized (True positive, positive but benign, false positive, negative, and any other categories.), etc. I dealt with as many as possible just to get the general gist of NIST 800-61 down,  at least as many as possible before taking action and fully securing the environment.
 
 ## Metrics Before Hardening / Security Controls
 The following table shows the metrics measured within the unsecured environment for 24 hours:
